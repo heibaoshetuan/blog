@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import xyz.yescn.blog.dto.UserDto;
-import xyz.yescn.blog.service.IUserService;
+import xyz.yescn.blog.dto.DailyDto;
+import xyz.yescn.blog.service.IDailyService;
 
 import java.util.List;
 
@@ -13,13 +13,15 @@ import java.util.List;
 @RequestMapping("/admin/daily")
 public class DailyController {
     @Autowired
-    private IUserService userService;
-    @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    public UserDto getUser(Long id){
-        return userService.getUser(id);
+    private IDailyService dailyService;
+
+    @RequestMapping(value = "/getDaily", method = RequestMethod.GET)
+    public DailyDto getUser(Long id) {
+        return dailyService.getDailyById(id);
     }
-    @RequestMapping(value = "/getUserList",method = RequestMethod.GET)
-    public List<UserDto> getUserList(){
-        return userService.getUserList();
+
+    @RequestMapping(value = "/getDailyList", method = RequestMethod.GET)
+    public List<DailyDto> getDailyList() {
+        return dailyService.getDailyList();
     }
 }

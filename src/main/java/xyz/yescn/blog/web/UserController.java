@@ -14,12 +14,14 @@ import java.util.List;
 public class UserController {
     @Autowired
     private IUserService userService;
-    @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    public UserDto getUser(Long id){
+
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
+    public UserDto getUser(Long id) {
         return userService.getUserById(id);
     }
-    @RequestMapping(value = "/getUserList",method = RequestMethod.GET)
-    public List<UserDto> getUserList(){
+
+    @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
+    public List<UserDto> getUserList() {
         return userService.getUserList();
     }
 
