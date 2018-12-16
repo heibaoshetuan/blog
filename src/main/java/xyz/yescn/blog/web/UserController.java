@@ -16,13 +16,11 @@ public class UserController {
     @Autowired
     private IUserService userService;
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    @ResponseBody
     public User getUser(Long id){
         User user = userService.getUser(id);
         return user;
     }
     @RequestMapping(value = "/getUserList",method = RequestMethod.GET)
-    @ResponseBody
     public List<User> getUserList(){
         List<User> users = userService.getUserList();
         return users;
