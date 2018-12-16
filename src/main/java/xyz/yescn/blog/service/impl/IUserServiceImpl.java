@@ -12,36 +12,29 @@ import java.util.List;
 @Service("userService")
 public class IUserServiceImpl implements IUserService {
     @Override
-    public User getUser(Long id) {
-        User user = new User();
-        user.setId(1L);
-        user.setName("zhangshan");
-        user.setDesc("zhanshan");
-        user.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        user.setPhone("13580567593");
-        user.setToKey("sEdsfsdere&%ererre");
-        return user;
+    public UserDto getUser(Long id) {
+        return  getUserDtoFromUser(new User(1L,"张珊","张珊是女的，且是高级管理员","13580567593"));
     }
 
     @Override
-    public List<User> getUserList() {
-        List<User> users = new ArrayList<User>(2);
-        User user1 = new User();
-        user1.setId(1L);
-        user1.setName("zhangshan");
-        user1.setDesc("zhanshan");
-        user1.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        user1.setPhone("13580567593");
-        user1.setToKey("sEdsfsdere&%ererre");
-        User user2 = new User();
-        user2.setId(2L);
-        user2.setName("zhangshan2");
-        user2.setDesc("zhanshan2");
-        user2.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        user2.setPhone("13580567593");
-        user2.setToKey("sEdsfsdere&%ererre2");
-        users.add(user1);
-        users.add(user2);
-        return users;
+    public List<UserDto> getUserList() {
+        List<UserDto> userDtoList = new ArrayList<>(2);
+        userDtoList.add( getUserDtoFromUser(new User(1L,"张珊","张珊是女的，且是高级管理员","13580567593")));
+        userDtoList.add( getUserDtoFromUser(new User(2L,"liSi","liSiSha","13880567593")));
+        return userDtoList;
+    }
+
+    /**
+     * 简单封装实体对象的转换Dto
+     * @param user
+     * @return
+     */
+    private UserDto getUserDtoFromUser(User user){
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setName(user.getName());
+        userDto.setDesc(user.getDesc());
+        userDto.setPhone(user.getPhone());
+        return userDto;
     }
 }

@@ -76,4 +76,11 @@ public class User implements Serializable {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+
+    public User(Long id, String name, String desc, String phone) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.phone = phone;
+    }
 }

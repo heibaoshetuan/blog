@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import xyz.yescn.blog.app.dto.UserDto;
 import xyz.yescn.blog.domain.User;
 import xyz.yescn.blog.service.IUserService;
 
@@ -16,14 +17,12 @@ public class UserController {
     @Autowired
     private IUserService userService;
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    public User getUser(Long id){
-        User user = userService.getUser(id);
-        return user;
+    public UserDto getUser(Long id){
+        return userService.getUser(id);
     }
     @RequestMapping(value = "/getUserList",method = RequestMethod.GET)
-    public List<User> getUserList(){
-        List<User> users = userService.getUserList();
-        return users;
+    public List<UserDto> getUserList(){
+        return userService.getUserList();
     }
 
 }

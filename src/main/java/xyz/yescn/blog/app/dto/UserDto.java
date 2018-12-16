@@ -2,7 +2,7 @@ package xyz.yescn.blog.app.dto;
 
 
 
-public class UserDto {
+public class UserDto extends BaseDto{
     private String desc;
     private String phone;
 
