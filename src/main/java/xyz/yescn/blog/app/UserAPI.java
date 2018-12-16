@@ -9,7 +9,6 @@ import xyz.yescn.blog.app.dto.UserDto;
 import xyz.yescn.blog.domain.User;
 import xyz.yescn.blog.service.IUserService;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/app/user")
