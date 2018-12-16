@@ -1,21 +1,29 @@
 package xyz.yescn.blog.service.impl;
 
 import org.springframework.stereotype.Service;
-import xyz.yescn.blog.app.dto.UserDto;
+import xyz.yescn.blog.dto.UserDto;
 import xyz.yescn.blog.domain.User;
 import xyz.yescn.blog.service.IUserService;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
 public class IUserServiceImpl implements IUserService {
+    /**
+     * 根据用户ID，查询用户信息
+     * @param id
+     * @return userDto
+     */
     @Override
-    public UserDto getUser(Long id) {
+    public UserDto getUserById(Long id) {
         return  getUserDtoFromUser(new User(1L,"张珊","张珊是女的，且是高级管理员","13580567593"));
     }
 
+    /**
+     * 查询用户列表信息，未进行分页查询
+     * @return userDtoList
+     */
     @Override
     public List<UserDto> getUserList() {
         List<UserDto> userDtoList = new ArrayList<>(2);
@@ -27,7 +35,7 @@ public class IUserServiceImpl implements IUserService {
     /**
      * 简单封装实体对象的转换Dto
      * @param user
-     * @return
+     * @return userDto
      */
     private UserDto getUserDtoFromUser(User user){
         UserDto userDto = new UserDto();

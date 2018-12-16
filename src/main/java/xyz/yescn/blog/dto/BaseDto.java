@@ -1,4 +1,4 @@
-package xyz.yescn.blog.app.dto;
+package xyz.yescn.blog.dto;
 
 public class BaseDto {
     private Long id;

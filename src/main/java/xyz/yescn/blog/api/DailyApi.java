@@ -1,10 +1,10 @@
-package xyz.yescn.blog.app;
+package xyz.yescn.blog.api;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/app/daily")
-public class DailyAPI {
+@RequestMapping("/api/daily")
+public class DailyApi {
 
 }
