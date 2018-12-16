@@ -1,6 +1,7 @@
 package xyz.yescn.blog.service.impl;
 
 import org.springframework.stereotype.Service;
+import xyz.yescn.blog.app.dto.UserDto;
 import xyz.yescn.blog.domain.User;
 import xyz.yescn.blog.service.IUserService;
 
