@@ -9,17 +9,37 @@ import xyz.yescn.blog.service.IUserService;
 
 import java.util.List;
 
+/**
+ * Gavin_Wang
+ * 用户信息管理控制器，后台编辑操作使用
+ */
 @Controller
 @RequestMapping("/admin/user")
 public class UserController {
     @Autowired
     private IUserService userService;
 
+    /**
+     * create by: Gavin_Wang
+     *description:a
+     * create time: 11:28 2018/12/17 0017
+     *
+     * @eturn a
+     * @Param: null
+     */
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
-    public UserDto getUser(Long id) {
+    public UserDto getUserById(Long id) {
         return userService.getUserById(id);
     }
 
+    /**
+     * create by: Gavin_Wang
+     *description:a
+     * create time: 11:28 2018/12/17 0017
+     *
+     * @eturn a
+     * @Param: null
+     */
     @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
     public List<UserDto> getUserList() {
         return userService.getUserList();

@@ -16,7 +16,7 @@ public class UserApi {
     private IUserService userService;
 
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
-    public UserDto getUser(Long id) {
+    public UserDto getUserById(Long id) {
         try {
             return userService.getUserById(id);
         } catch (CustomException c) {

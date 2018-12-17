@@ -16,7 +16,7 @@ public class DailyController {
     private IDailyService dailyService;
 
     @RequestMapping(value = "/getDaily", method = RequestMethod.GET)
-    public DailyDto getUser(Long id) {
+    public DailyDto getDailyById(Long id) {
         return dailyService.getDailyById(id);
     }
 

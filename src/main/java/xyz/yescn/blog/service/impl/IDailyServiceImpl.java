@@ -6,6 +6,10 @@ import xyz.yescn.blog.service.IDailyService;
 
 import java.util.List;
 
+
+/**
+ * @author issuser
+ */
 @Service("dailyService")
 public class IDailyServiceImpl implements IDailyService {
     @Override
