@@ -10,5 +10,5 @@ public interface IDailyService {
     void insertDaily(DailyDto dailyDto);
     void updateDaily(DailyDto dailyDto);
     void deleteDaily(Long id);
-    List<DailyDto> getDailyList();
+    List<DailyDto> getDailyList(Integer pageNum,Integer pageSize);
 }

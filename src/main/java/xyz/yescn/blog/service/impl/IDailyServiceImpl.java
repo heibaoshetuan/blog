@@ -1,5 +1,6 @@
 package xyz.yescn.blog.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.yescn.blog.dao.DailyMapper;
@@ -7,6 +8,7 @@ import xyz.yescn.blog.domain.Daily;
 import xyz.yescn.blog.dto.DailyDto;
 import xyz.yescn.blog.service.IDailyService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,8 +40,14 @@ public class IDailyServiceImpl implements IDailyService {
     }
 
     @Override
-    public List<DailyDto> getDailyList() {
-        return null;
+    public List<DailyDto> getDailyList(Integer pageNum,Integer pageSize) {
+        List<DailyDto> dailyDtoList = new ArrayList<>();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Daily> dailyList = dailyMapper.getDailyList();
+        for(Daily daily:dailyList){
+            dailyDtoList.add(getDailyDtoFromDaily(daily));
+        }
+        return dailyDtoList;
     }
 
     /**

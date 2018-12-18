@@ -39,5 +39,5 @@ public interface IUserService {
      * 获取用户列表，未进行分页
      * @return
      */
-    List<UserDto> getUserList();
+    List<UserDto> getUserList(Integer pageNum,Integer pageSize);
 }

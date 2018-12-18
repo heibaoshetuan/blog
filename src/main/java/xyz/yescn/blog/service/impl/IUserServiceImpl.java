@@ -1,5 +1,6 @@
 package xyz.yescn.blog.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -69,8 +70,9 @@ public class IUserServiceImpl implements IUserService {
      * @return userDtoList
      */
     @Override
-    public List<UserDto> getUserList() {
+    public List<UserDto> getUserList(Integer pageNum,Integer pageSize) {
        List<UserDto> userDtoList = new ArrayList<>();
+       PageHelper.startPage(pageNum, pageSize);
        List<User> userList = userMapper.getUserList();
        for(User user:userList){
            userDtoList.add(getUserDtoFromUser(user));
@@ -79,7 +81,7 @@ public class IUserServiceImpl implements IUserService {
     }
 
     /**
-     * 简单封装实体对象的转换Dto
+     * 封装实体对象的转换Dto
      *
      * @param user
      * @return userDto
