@@ -4,14 +4,42 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class User implements Serializable {
+    /**
+     * 用户Id
+     */
     private Long id;
+    /**
+     * 用户名称
+     */
     private String name;
+    /**
+     * 用户描述
+     */
     private String desc;
+    /**
+     * 用户后台登录密码
+     */
     private String password;
+    /**
+     * 用户第三方登录令牌toKey
+     */
     private String toKey;
+    /**
+     * 用户手机
+     */
     private String phone;
+    /**
+     * 用户创建时间
+     */
     private Timestamp createTime;
+    /**
+     * 用户更新时间
+     */
     private Timestamp updateTime;
+    /**
+     * 用户头像
+     */
+    private String imageUrl;
 
     public Long getId() {
         return id;
@@ -75,6 +103,14 @@ public class User implements Serializable {
 
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public User(Long id, String name, String desc, String phone) {
