@@ -20,8 +20,8 @@ public class DailyController {
         return dailyService.getDailyById(id);
     }
 
-    @RequestMapping(value = "/getDailyList", method = RequestMethod.GET)
-    public List<DailyDto> getDailyList() {
-        return dailyService.getDailyList();
-    }
+//    @RequestMapping(value = "/getDailyList", method = RequestMethod.GET)
+//    public List<DailyDto> getDailyList() {
+//        return dailyService.getDailyList();
+//    }
 }

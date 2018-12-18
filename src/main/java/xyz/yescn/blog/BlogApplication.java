@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * blog启动类
- * @author issuser
  */
 @SpringBootApplication
 @MapperScan("xyz.yescn.blog.dao")

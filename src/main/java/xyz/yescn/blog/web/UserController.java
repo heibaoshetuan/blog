@@ -40,9 +40,9 @@ public class UserController {
      * @eturn a
      * @Param: null
      */
-    @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
-    public List<UserDto> getUserList() {
-        return userService.getUserList();
-    }
+//    @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
+//    public List<UserDto> getUserList() {
+//        return userService.getUserList();
+//    }
 
 }
