@@ -28,12 +28,14 @@ spring:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
 
-#公共配置与profiles选择无关
-mybatis:
+
   typeAliasesPackage: xyz.yescn.blog.dao
   mapperLocations: classpath:mappers/*.xml
 
-#pagehelper分页插件
+
+thymeleaf:
+  prefix: classpath:templates/
+  #pagehelper分页插件
 pagehelper:
   helperDialect: mysql
   reasonable: true

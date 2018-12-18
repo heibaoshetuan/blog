@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/toLogin",method = RequestMethod.POST)
-    public String toLogin(UserDto userDto){
-        return "/admin/login";
+    @RequestMapping(value = "/toLogin")
+    public String toLogin(){
+        return "toLogin";
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
