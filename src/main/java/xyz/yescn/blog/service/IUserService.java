@@ -40,4 +40,11 @@ public interface IUserService {
      * @return
      */
     List<UserDto> getUserList(Integer pageNum,Integer pageSize);
+
+    /**
+     * 通过toKey查询用户授权信息，进行权限验证
+     * @param toKey
+     * @return
+     */
+    UserDto getLoginUserByToKey(String toKey);
 }

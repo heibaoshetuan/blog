@@ -15,5 +15,6 @@ public interface UserMapper {
     void insertUser(UserDto userDto);
     void updateUser(UserDto userDto);
     void deleteUser(Long id);
+    User getLoginUserByToKey(String toKey);
     List<User> getUserList();
 }

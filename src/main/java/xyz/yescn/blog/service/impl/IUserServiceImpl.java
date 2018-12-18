@@ -81,6 +81,17 @@ public class IUserServiceImpl implements IUserService {
     }
 
     /**
+     * 通过toKey查询用户授权信息，进行权限验证
+     *
+     * @param toKey
+     * @return
+     */
+    @Override
+    public UserDto getLoginUserByToKey(String toKey) {
+        return getUserDtoFromUser(userMapper.getLoginUserByToKey(toKey));
+    }
+
+    /**
      * 封装实体对象的转换Dto
      *
      * @param user
