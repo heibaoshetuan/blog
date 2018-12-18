@@ -1,14 +1,25 @@
 package xyz.yescn.blog.dto;
 
-public class DailyDto {
-    public DailyDto() {
-        super();
-    }
+import java.util.List;
 
+/**
+ * @author issuser
+ */
+public class DailyDto {
+    private Long id;
     private String title;
     private String content;
     private String createTime;
-    private Integer level;
+    private List<PictureDto> pictureDtoList;
+    private List<CommentDto> commentDtoList;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -34,11 +45,19 @@ public class DailyDto {
         this.createTime = createTime;
     }
 
-    public Integer getLevel() {
-        return level;
+    public List<PictureDto> getPictureDtoList() {
+        return pictureDtoList;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setPictureDtoList(List<PictureDto> pictureDtoList) {
+        this.pictureDtoList = pictureDtoList;
+    }
+
+    public List<CommentDto> getCommentDtoList() {
+        return commentDtoList;
+    }
+
+    public void setCommentDtoList(List<CommentDto> commentDtoList) {
+        this.commentDtoList = commentDtoList;
     }
 }

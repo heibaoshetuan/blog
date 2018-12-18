@@ -2,20 +2,33 @@ package xyz.yescn.blog.dto;
 
 
 
-public class UserDto extends BaseDto{
-    private String desc;
+/**
+ * @author issuser
+ */
+public class UserDto{
+
+    private Long id;
+    private String name;
     private String phone;
 
-    public UserDto() {
-        super();
+    private String toKey;
+
+
+
+    public Long getId() {
+        return id;
     }
 
-    public String getDesc() {
-        return desc;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {
@@ -24,5 +37,13 @@ public class UserDto extends BaseDto{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getToKey() {
+        return toKey;
+    }
+
+    public void setToKey(String toKey) {
+        this.toKey = toKey;
     }
 }

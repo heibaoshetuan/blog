@@ -1,28 +1,25 @@
 package xyz.yescn.blog.dto;
 
-
-
 /**
  * @author issuser
  */
-public class CategoryDto{
+public class CommentDto {
     /**
-     * 日志分类ID
+     * 评论主键Id
      */
     private Long id;
     /**
-     * 日志分类名称
+     * 评论内容
      */
-    private String name;
+    private String content;
     /**
-     * 日志分类创建时间
+     * 评论时间
      */
     private String createTime;
     /**
-     * 日志分类排序
+     * 日志id
      */
-    private Integer sort;
-
+    private Long dailyId;
     public Long getId() {
         return id;
     }
@@ -31,12 +28,12 @@ public class CategoryDto{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getCreateTime() {
@@ -47,11 +44,11 @@ public class CategoryDto{
         this.createTime = createTime;
     }
 
-    public Integer getSort() {
-        return sort;
+    public Long getDailyId() {
+        return dailyId;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setDailyId(Long dailyId) {
+        this.dailyId = dailyId;
     }
 }

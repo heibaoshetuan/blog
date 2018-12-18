@@ -22,11 +22,11 @@ public class Daily implements Serializable {
     /**
      * 日志创建时间
      */
-    private Timestamp createTime;
+    private String createTime;
     /**
      * 日志更新时间
      */
-    private Timestamp updateTime;
+    private String updateTime;
     /**
      * 日志标题图片，当没有上传标题图片时，默认使用日志中第一张图片，或用户头像
      */
@@ -56,19 +56,19 @@ public class Daily implements Serializable {
         this.content = content;
     }
 
-    public Timestamp getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Timestamp getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
