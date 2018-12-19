@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.yescn.blog.dao.DailyMapper;
+import xyz.yescn.blog.dao.PictureMapper;
 import xyz.yescn.blog.domain.Daily;
 import xyz.yescn.blog.dto.DailyDto;
 import xyz.yescn.blog.service.IDailyService;
@@ -19,6 +20,8 @@ import java.util.List;
 public class IDailyServiceImpl implements IDailyService {
     @Autowired
     private DailyMapper dailyMapper;
+    @Autowired
+    private PictureMapper pictureMapper;
     @Override
     public DailyDto getDailyById(Long id) {
         return getDailyDtoFromDaily(dailyMapper.getDailyById(id));

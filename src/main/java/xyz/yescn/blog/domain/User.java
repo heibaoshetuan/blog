@@ -11,19 +11,40 @@ public class User implements Serializable {
     /**
      * 用户名称
      */
-    private String name;
+    private String userName;
     /**
      * 用户描述
      */
-    private String desc;
+    private String userDesc;
     /**
      * 用户后台登录密码
      */
     private String password;
-    /**
-     * 用户第三方登录令牌toKey
-     */
-    private String toKey;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserDesc() {
+        return userDesc;
+    }
+
+    public void setUserDesc(String userDesc) {
+        this.userDesc = userDesc;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * 用户手机
      */
@@ -47,38 +68,6 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getToKey() {
-        return toKey;
-    }
-
-    public void setToKey(String toKey) {
-        this.toKey = toKey;
     }
 
     public String getPhone() {
@@ -113,10 +102,5 @@ public class User implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public User(Long id, String name, String desc, String phone) {
-        this.id = id;
-        this.name = name;
-        this.desc = desc;
-        this.phone = phone;
-    }
+
 }

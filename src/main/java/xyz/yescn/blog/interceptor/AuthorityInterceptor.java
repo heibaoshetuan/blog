@@ -58,16 +58,13 @@ public class AuthorityInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws IOException {
-        String toKey = (String) request.getSession().getAttribute("toKey");
+        UserDto userDto = (UserDto) request.getSession().getAttribute("userDto");
         String url = request.getRequestURL().toString();
-        if (url.indexOf("toLogin") > 0) {
-            return true;
-        }else{
-            if (null == toKey){
-                response.sendRedirect(request.getContextPath() + "/toLogin");
-                return false;
-            }
+        if (null == userDto && url.indexOf("login") < 0) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return false;
         }
+
 //        UserDto userDto = userService.getLoginUserByToKey(toKey);
 //        if (null == userDto) {
 //            response.sendRedirect(request.getContextPath() + "/toLogin");

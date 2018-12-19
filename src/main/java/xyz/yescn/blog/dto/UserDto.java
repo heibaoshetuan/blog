@@ -10,11 +10,7 @@ public class UserDto{
     private Long id;
     private String name;
     private String phone;
-
-    private String toKey;
-
-
-
+    private String password;
     public Long getId() {
         return id;
     }
@@ -39,11 +35,11 @@ public class UserDto{
         this.phone = phone;
     }
 
-    public String getToKey() {
-        return toKey;
+    public String getPassword() {
+        return password;
     }
 
-    public void setToKey(String toKey) {
-        this.toKey = toKey;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

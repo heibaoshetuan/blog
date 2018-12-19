@@ -18,6 +18,14 @@ public interface IUserService {
     UserDto getUserById(Long id);
 
     /**
+     * 通过名称和密码查询用户是否存在
+     * @param name
+     * @param password
+     * @return
+     */
+    UserDto getUserByNameAndPassword(String name,String password);
+
+    /**
      * 新增用户
      * @param userDto
      */

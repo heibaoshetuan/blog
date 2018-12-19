@@ -25,7 +25,6 @@
 //        registry.addInterceptor(authorityInterceptor)
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/static/**")
-//                .excludePathPatterns("toLogin")
 //                .excludePathPatterns("login");
 //    }
 //}

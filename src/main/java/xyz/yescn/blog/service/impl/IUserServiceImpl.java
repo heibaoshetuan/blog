@@ -34,6 +34,11 @@ public class IUserServiceImpl implements IUserService {
         return getUserDtoFromUser(userMapper.getUserById(id));
     }
 
+    @Override
+    public UserDto getUserByNameAndPassword(String name, String password) {
+        return getUserDtoFromUser(userMapper.getUserByNameAndPassword(name,password));
+    }
+
     /**
      * 新增用户
      *
@@ -100,7 +105,7 @@ public class IUserServiceImpl implements IUserService {
     private UserDto getUserDtoFromUser(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
-        userDto.setName(user.getName());
+        userDto.setName(user.getUserName());
         userDto.setPhone(user.getPhone());
         return userDto;
     }

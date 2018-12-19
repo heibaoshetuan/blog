@@ -9,15 +9,28 @@
     4、接口方法的返回值类型要和resultType一致
 -->
 <mapper namespace="xyz.yescn.blog.dao.CommentMapper">
-    <!--获取国际城市列表-->
-    <select id="getInterCityCodes" resultType="string">
-         select c.code from C_B2C_CITYLIST c where c.international='Y' and c.locale='en'
-    </select>
-    <select id="getInterCities" resultType="com.csair.b2c.eunion.model.international.shopping.Cities">
-         select c.code as code, c.name as name,c.locale as locale from C_B2C_CITYLIST c
+    <select id="getCommentById" resultType="user" parameterType="long">
+        select * from category cg where cg.id = #{id}
     </select>
 
-    <select id="getCurTime" resultType="string">
-        select curdate();
+    <select id="getLoginUserByToKey" resultType="comment" parameterType="long">
+        select * from category cg where cg.id = #{id}
     </select>
+
+    <select id="getCommentList" resultType="comment">
+        select * from category cg
+    </select>
+
+    <insert id="insertComment" parameterType="xyz.yescn.blog.dto.CommentDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category (name,desc, create_time, sort)
+        VALUES (#{name},#{desc},#{createTime},#{sort})
+    </insert>
+
+    <update id="updateComment" parameterType="xyz.yescn.blog.dto.CommentDto">
+        update category cg set cg.name = #{name} where cd.id = #{id}
+    </update>
+
+    <delete id="deleteComment" parameterType="long">
+        delete from category cg where cg.id = #{id}
+    </delete>
 </mapper>

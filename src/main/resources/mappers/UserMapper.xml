@@ -9,15 +9,28 @@
     4、接口方法的返回值类型要和resultType一致
 -->
 <mapper namespace="xyz.yescn.blog.dao.UserMapper">
-    <!--获取国际城市列表-->
-    <select id="getInterCityCodes" resultType="string">
-         select c.code from C_B2C_CITYLIST c where c.international='Y' and c.locale='en'
-    </select>
-    <select id="getInterCities" resultType="com.csair.b2c.eunion.model.international.shopping.Cities">
-         select c.code as code, c.name as name,c.locale as locale from C_B2C_CITYLIST c
+    <select id="getUserById" resultType="user" parameterType="long">
+        select ur_id as id,ur_name as userName from blog_user ur where ur.ur_id = #{id}
     </select>
 
-    <select id="getCurTime" resultType="string">
-        select curdate();
+    <select id="getLoginUserByToKey" resultType="user" parameterType="long">
+        select * from blog_user cg where cg.ur_toKey = #{toKey}
     </select>
+
+    <select id="getUserList" resultType="user">
+        select ur_id as id,ur_name as userName from blog_user ur
+    </select>
+
+    <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog_user (ur_name,ur_password)
+        VALUES (#{name},#{password})
+    </insert>
+
+    <update id="updateUser" parameterType="xyz.yescn.blog.dto.UserDto">
+        update blog_user cg set cg.ur_name = #{name} where cg.ur_id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="long">
+        delete from blog_user where ur_id = #{id}
+    </delete>
 </mapper>
