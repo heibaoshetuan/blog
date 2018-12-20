@@ -9,23 +9,33 @@
     4、接口方法的返回值类型要和resultType一致
 -->
 <mapper namespace="xyz.yescn.blog.dao.DailyMapper">
-    <select id="getDailyById" resultType="daily" parameterType="long">
-        select * from category cg where cg.id = #{id}
+    <resultMap type="xyz.yescn.blog.domain.Daily" id="dailyResultMap">
+        <id column="DR_ID" property="id"/>
+        <result column="DR_TITLE" property="title"/>
+        <result column="DR_CONTENT" property="content"/>
+        <result column="DR_CREATE_TIME" property="createTime"/>
+        <result column="DR_CG_ID" property="cgId"/>
+        <result column="UR_ID" property="urId"/>
+        <result column="DR_TAG" property="tag"/>
+    </resultMap>
+
+    <select id="getDailyById" resultMap="dailyResultMap" parameterType="long">
+        select DR_ID,DR_TITLE,DR_CONTENT,DR_CREATE_TIME,DR_CG_ID,UR_ID,DR_TAG from blog_diary cg where cg.DR_ID = #{id}
     </select>
-    <select id="getDailyList" resultType="daily">
-        select * from category cg
+    <select id="getDailyList" resultMap="dailyResultMap">
+        select DR_ID,DR_TITLE,DR_CONTENT,DR_CREATE_TIME,DR_CG_ID,UR_ID,DR_TAG from category cg
     </select>
 
     <insert id="insertDaily" parameterType="xyz.yescn.blog.dto.DailyDto" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO category (name,desc, create_time, sort)
-        VALUES (#{name},#{desc},#{createTime},#{sort})
+        INSERT INTO blog_diary (DR_TITLE,DR_CONTENT,DR_CREATE_TIME,DR_CG_ID,DR_UPDATE_TIME,UR_ID,DR_TAG)
+        VALUES (#{title},#{content},#{createTime},#{cgId},#{updateTime},#{urId},#{tag})
     </insert>
 
     <update id="updateDaily" parameterType="xyz.yescn.blog.dto.DailyDto">
-        update category cg set cg.name = #{name} where cd.id = #{id}
+        update blog_diary  set DR_TITLE =  #{title} , DR_CONTENT =  #{content}, DR_UPDATE_TIME =  #{updateTime} where DR_ID = #{id}
     </update>
 
     <delete id="deleteDaily" parameterType="long">
-        delete from category cg where cg.id = #{id}
+        delete from blog_diary cg where cg.DR_ID = #{id}
     </delete>
 </mapper>

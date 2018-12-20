@@ -9,23 +9,31 @@
     4、接口方法的返回值类型要和resultType一致
 -->
 <mapper namespace="xyz.yescn.blog.dao.PictureMapper">
-    <select id="getPictureById" resultType="picture" parameterType="long">
-        select * from category cg where cg.id = #{id}
+    <resultMap type="xyz.yescn.blog.domain.Picture" id="pictureResultMap">
+        <id column="PT_ID" property="id"/>
+        <result column="PT_URL" property="url"/>
+        <result column="PT_DESCRIPTION" property="description"/>
+        <result column="PT_CREATE_TIME" property="createTime"/>
+        <result column="PT_DAILY_ID" property="dailyId"/>
+    </resultMap>
+
+    <select id="getPictureById" resultMap="pictureResultMap" parameterType="long">
+        select PT_ID,PT_URL,PT_DESCRIPTION,PT_CREATE_TIME,PT_DAILY_ID from blog_picture cg where cg.PT_ID = #{id}
     </select>
-    <select id="getPictureList" resultType="picture">
-        select * from category cg
+    <select id="getPictureList" resultMap="pictureResultMap" parameterType="long">
+        select PT_ID,PT_URL,PT_DESCRIPTION,PT_CREATE_TIME,PT_DAILY_ID from blog_picture cg where cg.PT_DAILY_ID = #{dailyId}
     </select>
 
     <insert id="insertPicture" parameterType="xyz.yescn.blog.dto.PictureDto" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO category (name,desc, create_time, sort)
-        VALUES (#{name},#{desc},#{createTime},#{sort})
+        INSERT INTO blog_picture (PT_URL,PT_DESCRIPTION,PT_CREATE_TIME,PT_DAILY_ID)
+        VALUES (#{url},#{description},#{createTime},#{dailyId})
     </insert>
 
     <update id="updatePicture" parameterType="xyz.yescn.blog.dto.PictureDto">
-        update category cg set cg.name = #{name} where cd.id = #{id}
+        update blog_picture cg set PT_DESCRIPTION = #{description} , PT_CREATE_TIME = #{createTime} 	  where cd.PT_ID = #{id}
     </update>
 
     <delete id="deletePicture" parameterType="long">
-        delete from category cg where cg.id = #{id}
+        delete from blog_picture cg where cg.PT_ID = #{id}
     </delete>
 </mapper>

@@ -9,23 +9,30 @@
     4、接口方法的返回值类型要和resultType一致
 -->
 <mapper namespace="xyz.yescn.blog.dao.CategoryMapper">
-    <select id="getCategoryById" resultType="category" parameterType="long">
-         select * from blog_category_diary cg where cg.id = #{id}
+    <resultMap type="xyz.yescn.blog.domain.Category" id="categoryResultMap">
+        <id column="CG_ID" property="id"/>
+        <result column="CG_NAME" property="name"/>
+        <result column="CG_DESCRIPTION" property="createTime"/>
+        <result column="CG_LEVEL" property="level"/>
+        <result column="CG_CREATETIME" property="createTime"/>
+    </resultMap>
+
+    <select id="getCategoryById" resultMap="categoryResultMap" parameterType="long">
+         select cg.CG_ID,cg.CG_NAME,cg.CG_DESCRIPTION,cg.CG_LEVEL,cg.CG_CREATETIME from blog_category_diary cg where cg.CG_ID = #{id}
     </select>
-    <select id="getCategoryList" resultType="category">
-         select * from blog_category_diary cg
+    <select id="getCategoryList" resultMap="categoryResultMap">
+         select cg.CG_ID,cg.CG_NAME,cg.CG_DESCRIPTION,cg.CG_LEVEL,cg.CG_CREATETIME from blog_category_diary cg
     </select>
 
     <insert id="insertCategory" parameterType="xyz.yescn.blog.dto.CategoryDto" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO blog_category_diary (cg_name,cg_desc, cg_create_time, cg_sort)
-		VALUES (#{name},#{desc},#{createTime},#{sort})
+		INSERT INTO blog_category_diary (CG_NAME,CG_DESCRIPTION,CG_LEVEL,CG_CREATETIME,CG_UPDATETIME,CG_UR_ID)VALUES (#{name},#{description},#{createTime},#{updateTime},#{urId})
 	</insert>
 
     <update id="updateCategory" parameterType="xyz.yescn.blog.dto.CategoryDto">
-         update blog_category_diary cg set cg.cg_name = #{name} where cd.cg_id = #{id}
+         update blog_category_diary cg set cg.CG_NAME = #{name},cg.CG_DESCRIPTION = #{description },cg.CG_UPDATETIME = #{updateTime} where cd.CG_ID = #{id}
     </update>
 
     <delete id="deleteCategory" parameterType="long">
-       delete from blog_category_diary cg where cg.cg_id = #{id}
+       delete from blog_category_diary cg where cg.CG_ID = #{id}
     </delete>
 </mapper>

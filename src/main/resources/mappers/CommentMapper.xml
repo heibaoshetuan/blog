@@ -9,28 +9,31 @@
     4、接口方法的返回值类型要和resultType一致
 -->
 <mapper namespace="xyz.yescn.blog.dao.CommentMapper">
-    <select id="getCommentById" resultType="user" parameterType="long">
-        select * from category cg where cg.id = #{id}
+    <resultMap type="xyz.yescn.blog.domain.Comment" id="commentResultMap">
+        <id column="CM_ID" property="id"/>
+        <result column="CM_CONTNET" property="content"/>
+        <result column="CM_CREATE_TIME" property="createTime"/>
+        <result column="CM_DAILY_ID" property="dailyId"/>
+        <result column="CM_PID" property="pid"/>
+    </resultMap>
+    <select id="getCommentById" resultMap="commentResultMap" parameterType="long">
+        select cg.CM_ID,cg.CM_CONTNET,cg.CM_CREATE_TIME,cg.CM_DAILY_ID,cg.CM_PID from category cg where cg.CM_ID = #{id}
     </select>
 
-    <select id="getLoginUserByToKey" resultType="comment" parameterType="long">
-        select * from category cg where cg.id = #{id}
-    </select>
-
-    <select id="getCommentList" resultType="comment">
-        select * from category cg
+    <select id="getCommentList" resultMap="commentResultMap">
+        select cg.CM_ID,cg.CM_CONTNET,cg.CM_CREATE_TIME,cg.CM_DAILY_ID,cg.CM_PID from category cg where cg.CM_DAILY_ID = #{dailyId}
     </select>
 
     <insert id="insertComment" parameterType="xyz.yescn.blog.dto.CommentDto" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO category (name,desc, create_time, sort)
-        VALUES (#{name},#{desc},#{createTime},#{sort})
+        INSERT INTO blog_comment (CM_CONTNET,CM_CREATE_TIME, CM_DAILY_ID,CM_PID,CM_UR_ID)
+        VALUES (#{content},#{createTime},#{dailyId},#{pid},#{urId})
     </insert>
 
     <update id="updateComment" parameterType="xyz.yescn.blog.dto.CommentDto">
-        update category cg set cg.name = #{name} where cd.id = #{id}
+        update blog_comment  set  CM_CONTNET = 'CM_CONTNET' ,CM_CREATE_TIME = 'CM_CREATE_TIME' where CM_ID = #{id}
     </update>
 
     <delete id="deleteComment" parameterType="long">
-        delete from category cg where cg.id = #{id}
+        delete from blog_comment cg where cg.CM_ID = #{id}
     </delete>
 </mapper>
