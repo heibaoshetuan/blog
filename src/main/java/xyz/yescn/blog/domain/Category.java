@@ -19,15 +19,20 @@ public class Category implements Serializable {
     /**
      * 日志分类描述
      */
-    private String desc;
-    /**
-     * 日志分类创建时间
-     */
-    private Timestamp createTime;
+    private String description;
     /**
      * 日志分类排序
      */
-    private Integer sort;
+    private Integer level;
+    /**
+     * 日志分类创建时间
+     */
+    private String createTime;
+    /**
+     * 日志分类更新时间
+     */
+    private String updateTime;
+
 
     public Long getId() {
         return id;
@@ -45,28 +50,36 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Timestamp getCreateTime() {
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getSort() {
-        return sort;
+    public String getUpdateTime() {
+        return updateTime;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -74,9 +87,10 @@ public class Category implements Serializable {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
-                ", createTime=" + createTime +
-                ", sort=" + sort +
+                ", description='" + description + '\'' +
+                ", level=" + level +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
                 '}';
     }
 }

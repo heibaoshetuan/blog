@@ -51,10 +51,10 @@ public interface UserMapper {
     /**
      * 通过toKey查询用户授权信息，进行权限验证
      *
-     * @param toKey
+     * @param toKen
      * @return
      */
-    User getLoginUserByToKey(String toKey);
+    User getLoginUserByToKen(String toKen);
 
     /**
      * 获取用户列表，未进行分页

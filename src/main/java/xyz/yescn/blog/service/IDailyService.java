@@ -1,6 +1,6 @@
 package xyz.yescn.blog.service;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+
 import xyz.yescn.blog.dto.DailyDto;
 
 import java.util.List;
