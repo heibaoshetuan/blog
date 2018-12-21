@@ -9,18 +9,30 @@
     4、接口方法的返回值类型要和resultType一致
 -->
 <mapper namespace="xyz.yescn.blog.dao.UserMapper">
-    <select id="getUserById" resultType="xyz.yescn.blog.domain.User" parameterType="long">
-        select ur_id as id,ur_name as userName from blog_user ur where ur.ur_id = #{id}
+    <resultMap type="xyz.yescn.blog.domain.User" id="userResultMap">
+        <id column="UR_ID" property="id"/>
+        <result column="UR_NAME" property="name"/>
+        <result column="UR_PHONE" property="phone"/>
+        <result column="UR_DESCRIPTION" property="description"/>
+        <result column="UR_STATUS" property="status"/>
+        <result column="UR_CREATE_TIME" property="createTime"/>
+    </resultMap>
+
+    <select id="getUserById" resultMap="userResultMap" parameterType="long">
+        select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user ur where ur.UR_ID = #{id}
     </select>
 
-    <select id="getLoginUserByToKey" resultType="xyz.yescn.blog.domain.User" parameterType="long">
-        select * from blog_user cg where cg.ur_toKey = #{toKey}
+    <select id="getLoginUserByToKen" resultMap="userResultMap" parameterType="long">
+        select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user cg where cg.ur_toKen = #{toKen}
     </select>
 
-    <select id="getUserList" resultType="xyz.yescn.blog.domain.User">
-        select ur_id as id,ur_name as userName from blog_user ur
+    <select id="getUserByNameAndPassword" resultMap="userResultMap" parameterType="long">
+        select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user cg where cg.UR_NAME = #{name} and cg.UR_PASSWORD = #{password}
     </select>
-    <select id="getUserByNameAndPassword" resultType="xyz.yescn.blog.domain.User"></select>
+
+    <select id="getUserList" resultMap="userResultMap">
+        select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user ur
+    </select>
 
     <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO blog_user (ur_name,ur_password)

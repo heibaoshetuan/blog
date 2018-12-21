@@ -13,9 +13,13 @@ public class Comment implements Serializable {
      */
     private Long id;
     /**
-     * 日志Id
+     * 评论内容父ID
      */
-    private Long dailyId;
+    private Long pid;
+    /**
+     * 日志信息，用于关联评论内容
+     */
+    private Daily daily;
     /**
      * 评论内容
      */
@@ -23,7 +27,15 @@ public class Comment implements Serializable {
     /**
      * 评论时间
      */
-    private Timestamp createTime;
+    private String createTime;
+    /**
+     * 日志主键ID
+     */
+    private Long dailyId;
+    /**
+     * 评论人Id
+     */
+    private Long urId;
 
     public Long getId() {
         return id;
@@ -33,12 +45,20 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public Long getDailyId() {
-        return dailyId;
+    public Long getPid() {
+        return pid;
     }
 
-    public void setDailyId(Long dailyId) {
-        this.dailyId = dailyId;
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public Daily getDaily() {
+        return daily;
+    }
+
+    public void setDaily(Daily daily) {
+        this.daily = daily;
     }
 
     public String getContent() {
@@ -49,11 +69,40 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public Timestamp getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public Long getDailyId() {
+        return dailyId;
+    }
+
+    public void setDailyId(Long dailyId) {
+        this.dailyId = dailyId;
+    }
+
+    public Long getUrId() {
+        return urId;
+    }
+
+    public void setUrId(Long urId) {
+        this.urId = urId;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", daily=" + daily +
+                ", content='" + content + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", dailyId=" + dailyId +
+                ", urId=" + urId +
+                '}';
     }
 }

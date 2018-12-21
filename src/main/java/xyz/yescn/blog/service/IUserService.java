@@ -54,5 +54,5 @@ public interface IUserService {
      * @param toKey
      * @return
      */
-    UserDto getLoginUserByToKey(String toKey);
+    UserDto getLoginUserByToKen(String toKey);
 }

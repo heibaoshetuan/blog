@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="~{fragments/header :: header}">
+	<meta charset="UTF-8">
 </head>
+
 <body>
 <!-- Page content -->
 <div class="container blog-content-container"> 
 
-	<h3 th:text="${userModel.title}">Gavin_Wang</h3>
-	<form action="/login" th:action="@{/login}" method="POST" th:object="${userModel.user}">
+	<h3 th:text="${user.getName()}">Gavin_Wang</h3>
+	<form action="/login" th:action="@{/login}" method="POST" th:object="${user}">
 		名称：<br>
 		<input type="text" class="form-control" name="name" th:value="*{name}">
-		邮箱：<br>
-		<input type="text" class="form-control" name="email" th:value="*{password}">
+		密码：<br>
+		<input type="text" class="form-control" name="password" th:value="*{password}">
 		<input type="submit" class="btn btn-default" value="提交">
 	</form>
 

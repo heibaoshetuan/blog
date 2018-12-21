@@ -88,12 +88,12 @@ public class IUserServiceImpl implements IUserService {
     /**
      * 通过toKey查询用户授权信息，进行权限验证
      *
-     * @param toKey
+     * @param toKen
      * @return
      */
     @Override
-    public UserDto getLoginUserByToKey(String toKey) {
-        return getUserDtoFromUser(userMapper.getLoginUserByToKey(toKey));
+    public UserDto getLoginUserByToKen(String toKen) {
+        return getUserDtoFromUser(userMapper.getLoginUserByToKen(toKen));
     }
 
     /**
@@ -105,8 +105,10 @@ public class IUserServiceImpl implements IUserService {
     private UserDto getUserDtoFromUser(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
-        userDto.setName(user.getUserName());
+        userDto.setName(user.getName());
         userDto.setPhone(user.getPhone());
+        userDto.setCreateTime(user.getCreateTime());
+        userDto.setStatus(user.getStatus());
         return userDto;
     }
 }

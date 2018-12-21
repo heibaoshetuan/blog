@@ -18,15 +18,25 @@ public class Picture implements Serializable {
     /**
      * 相片描述
      */
-    private String desc;
+    private String description;
     /**
      * 相片上传时间
      */
-    private Timestamp createTime;
+    private String createTime;
     /**
-     * 相片上传排序
+     * 日志信息表，用于关联日志上传图片
      */
-    private Integer sort;
+    private Daily daily;
+
+    private Long dailyId;
+
+    public Long getDailyId() {
+        return dailyId;
+    }
+
+    public void setDailyId(Long dailyId) {
+        this.dailyId = dailyId;
+    }
 
     public Long getId() {
         return id;
@@ -44,28 +54,28 @@ public class Picture implements Serializable {
         this.url = url;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Timestamp getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getSort() {
-        return sort;
+    public Daily getDaily() {
+        return daily;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setDaily(Daily daily) {
+        this.daily = daily;
     }
 
     @Override
@@ -73,9 +83,10 @@ public class Picture implements Serializable {
         return "Picture{" +
                 "id=" + id +
                 ", url='" + url + '\'' +
-                ", desc='" + desc + '\'' +
-                ", createTime=" + createTime +
-                ", sort=" + sort +
+                ", description='" + description + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", daily=" + daily +
+                ", dailyId=" + dailyId +
                 '}';
     }
 }

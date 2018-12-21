@@ -1,7 +1,6 @@
 package xyz.yescn.blog.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,26 +10,39 @@ import xyz.yescn.blog.service.IUserService;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 /**
  * @author issuser
  */
 @Controller
-@RequestMapping("/login")
 public class LoginController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping()
-    public ModelAndView login(Model model) {
-        model.addAttribute("user", new UserDto());
-        model.addAttribute("title", "用户登陆");
-        return new ModelAndView("login", "userModel", model);
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/index";
     }
 
-    @PostMapping()
-    public ModelAndView login(HttpServletRequest request,UserDto userDto) {
-        userDto = userService.getUserByNameAndPassword(userDto.getName(),userDto.getPassword());
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("user", new UserDto());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public ModelAndView login(HttpServletRequest request, UserDto userDto) {
+        userDto = userService.getUserByNameAndPassword(userDto.getName(), userDto.getPassword());
+        String skipUrl = (String) request.getSession().getAttribute("skipUrl");
+        if (null == userDto) {
+            return new ModelAndView("redirect:/login");
+        }
         request.getSession().setAttribute("userDto", userDto);
-        return new ModelAndView("redirect:/users");
+        return new ModelAndView("redirect:" + skipUrl + "");
     }
 }
