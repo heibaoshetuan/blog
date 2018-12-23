@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import xyz.yescn.blog.dto.UserDto;
 import xyz.yescn.blog.service.IUserService;
 
+import java.sql.Timestamp;
+
 
 /**
  * Gavin_Wang
@@ -75,6 +77,10 @@ public class UserController {
      */
     @PostMapping()
     public ModelAndView saveOrUpdateUser(UserDto userDto) {
+        userDto.setCreateTime(new Timestamp(System.currentTimeMillis()).toString());
+        userDto.setDescription("gavin_wang");
+        userDto.setPhone("13580567593");
+        userDto.setStatus(1);
         if (null != userDto && null != userDto.getId()) {
             userService.updateUser(userDto);
         } else {

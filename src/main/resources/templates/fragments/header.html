@@ -6,60 +6,32 @@
 	<meta charset="utf-8">
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Tether core CSS -->
-    <link href="../../css/tether.min.css" th:href="@{/css/tether.min.css}" rel="stylesheet">
-
-    <!-- Bootstrap CSS -->
-    <link href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-
-    <!-- Font-Awesome CSS -->
-    <link href="../../css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
-
-    <!-- NProgress CSS -->
-    <link href="../../css/nprogress.css" th:href="@{/css/nprogress.css}" rel="stylesheet">
-
-    <!-- thinker-md CSS -->
-    <link href="../../css/thinker-md.vendor.css" th:href="@{/css/thinker-md.vendor.css}" rel="stylesheet">
-
-    <!-- bootstrap tags CSS -->
-    <link href="../../css/bootstrap-tagsinput.css" th:href="@{/css/jquery.tagsinput.min.css}" rel="stylesheet">
-    
-    <!-- bootstrap chosen CSS -->
-    <link href="../../css/component-chosen.min.css" th:href="@{/css/component-chosen.min.css}" rel="stylesheet">
-
-    <!-- toastr CSS -->
-    <link href="../../css/toastr.min.css" th:href="@{/css/toastr.min.css}" rel="stylesheet">
-    
-    <!-- jQuery image cropping plugin CSS -->
-    <link href="../../css/cropbox.css" th:href="@{/css/cropbox.css}" rel="stylesheet">
-    
-    <!-- Custom styles -->
-    <link href="../../css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
-    <link href="../../css/thymeleaf-bootstrap-paginator.css" th:href="@{/css/thymeleaf-bootstrap-paginator.css}"
-          rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
     <link href="../../css/blog.css" th:href="@{/css/blog.css}" rel="stylesheet">
+    <link href="../../css/signin.css" th:href="@{/css/signin.css}" rel="stylesheet">
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
 </head>
 <body>
-<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+<div class="blog-masthead">
     <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarsContainer">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/" th:href="@{~/}">Gavin_Wang</a>
-
-        <div class="collapse navbar-collapse" id="navbarsContainer">
-
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/users}"  >首页 <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-
-        </div>
-
+        <nav class="blog-nav">
+            <a class="blog-nav-item active" href="#" th:href="@{/}">Home</a>
+            <a class="blog-nav-item" href="#" th:href="@{/daily/list}">日志</a>
+            <a class="blog-nav-item" href="#" th:href="@{/picture/list}">相册</a>
+            <a class="blog-nav-item" href="#" th:href="@{/technology/list}">技术</a>
+            <a class="blog-nav-item" href="#" th:href="@{/user}">About</a>
+            <input type="text" class="blog-search" placeholder="搜索" required autofocus
+                   name="key" th:value="*{key}" />
+            <button class="blog-search-btn" type="submit">搜索</button>
+            <a class="blog-nav-manager" href="#" th:href="@{/user}"></a>
+        </nav>
     </div>
-</nav>
-</body>
+</div/body>
 </html>

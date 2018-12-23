@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<!-- Page content -->
+<div class="container blog-content-container"> 
+
+	<h3 th:text="${title}">新增日志</h3>
+	<form action="/category" th:action="@{/category}" method="POST" th:object="${category}">
+		<input type="hidden" name="id" th:value="*{id}">
+		名称：<br>
+		<input type="text" class="form-control" name="name" th:value="*{name}">
+		分类：<br>
+		<select th:each="category : ${categoryList}">
+			<option th:text="${category.getId()}">
+			</option>
+		</select>
+		内容：<br>
+		<input type="text" class="form-control" name="content" th:value="*{content}">
+		<input type="submit" class="btn btn-default" value="提交">
+	</form>
+
+</div><!-- /.container -->
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head　th:replace="~{fragments/header :: header}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Gavin_Wang Blog</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<div class="blog-header">
+		<!--<h1 class="blog-title" >缘来是你</h1>-->
+		<p class="lead blog-description">记录人生每一次精彩瞬间~</p>
+        <div><a class="btn btn-default" href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-sm-8 blog-main">
+			<div class="blog-post" th:each="daily : ${dailyList}">
+                <a href="#" th:href="@{'/daily/'+${daily.getId()}}"><h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2></a>
+				<p class="blog-post-meta" th:text="${daily.getCreateTime()}"></p>
+				<p th:utext="${daily.getContent()}"></p>
+			</div>
+			<nav>
+				<ul class="pager">
+					<li><a href="#">Previous</a></li>
+					<li><a href="#">Next</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+			<div class="sidebar-module sidebar-module-inset">
+				<h4>About</h4>
+				<p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+			</div>
+			<div class="sidebar-module">
+				<h4>Archives</h4>
+				<ol class="list-unstyled">
+					<li><a href="#">March 2014</a></li>
+					<li><a href="#">February 2014</a></li>
+					<li><a href="#">January 2014</a></li>
+					<li><a href="#">December 2013</a></li>
+					<li><a href="#">November 2013</a></li>
+					<li><a href="#">October 2013</a></li>
+					<li><a href="#">September 2013</a></li>
+					<li><a href="#">August 2013</a></li>
+					<li><a href="#">July 2013</a></li>
+					<li><a href="#">June 2013</a></li>
+					<li><a href="#">May 2013</a></li>
+					<li><a href="#">April 2013</a></li>
+				</ol>
+			</div>
+			<div class="sidebar-module">
+				<h4>Elsewhere</h4>
+				<ol class="list-unstyled">
+					<li><a href="#">GitHub</a></li>
+					<li><a href="#">Twitter</a></li>
+					<li><a href="#">Facebook</a></li>
+				</ol>
+			</div>
+		</div><!-- /.blog-sidebar -->
+
+	</div><!-- /.row -->
+
+</div><!-- /.container -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -22,11 +22,11 @@
         select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user ur where ur.UR_ID = #{id}
     </select>
 
-    <select id="getLoginUserByToKen" resultMap="userResultMap" parameterType="long">
+    <select id="getLoginUserByToKen" resultMap="userResultMap" parameterType="string">
         select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user cg where cg.ur_toKen = #{toKen}
     </select>
 
-    <select id="getUserByNameAndPassword" resultMap="userResultMap" parameterType="long">
+    <select id="getUserByNameAndPassword" resultMap="userResultMap" parameterType="string">
         select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user cg where cg.UR_NAME = #{name} and cg.UR_PASSWORD = #{password}
     </select>
 
@@ -34,9 +34,9 @@
         select UR_ID,UR_NAME,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME from blog_user ur
     </select>
 
-    <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO blog_user (ur_name,ur_password)
-        VALUES (#{name},#{password})
+    <insert id="insertUser" parameterType="xyz.yescn.blog.dto.UserDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog_user (UR_NAME,UR_PASSWORD,UR_PHONE,UR_DESCRIPTION,UR_STATUS,UR_CREATE_TIME)
+        VALUES (#{name},#{password},#{phone},#{description},#{status},#{createTime})
     </insert>
 
     <update id="updateUser" parameterType="xyz.yescn.blog.dto.UserDto">

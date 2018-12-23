@@ -15,8 +15,8 @@
 		<thead>
 		<tr>
 			<td>ID</td>
-			<td>Email</td>
-			<td>Name</td>
+			<td>名称</td>
+			<td>创建时间</td>
 			<td colspan="2" align="center">操作</td>
 		</tr>
 		</thead>
@@ -27,7 +27,7 @@
 		<tr th:each="user : ${userModel.userList}">
 			<td th:text="${user.getId()}"></td>
 			<td th:text="${user.getName()}"></td>
-			<td ><a th:href="@{'/admin/users/'+${user.getId()}}" th:text="${user.getName()}"></a></td>
+			<td ><a th:text="${user.getCreateTime()}"></a></td>
 			<td ><a th:href="@{'/admin/users/modify/'+${user.getId()}}" th:text="修改"></a></td>
 			<td ><a th:href="@{'/admin/users/delete/'+${user.getId()}}" th:text="删除"></a></td>
 		</tr>

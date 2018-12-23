@@ -4,10 +4,20 @@ spring:
     port: 8080
   datasource:
     druid:
+      
+<<<<<<< .mine
       username: root
+=======
+      username: gavin
+>>>>>>> .theirs
       password: 123456
+<<<<<<< .mine
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8
+=======
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false
+>>>>>>> .theirs
       max-active: 100
       min-idle: 30
       max-wait: 10000
