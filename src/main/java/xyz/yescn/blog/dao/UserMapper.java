@@ -1,5 +1,6 @@
 package xyz.yescn.blog.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import xyz.yescn.blog.domain.User;
 import xyz.yescn.blog.dto.UserDto;
@@ -21,11 +22,12 @@ public interface UserMapper {
 
     /**
      * 通过名称和密码查询用户是否存在
+     *
      * @param name
      * @param password
      * @return
      */
-    User getUserByNameAndPassword(String name,String password);
+    User getUserByNameAndPassword(@Param("name") String name, @Param("password") String password);
 
     /**
      * 新增用户

@@ -1,5 +1,6 @@
 package xyz.yescn.blog.dao;
 
+import org.springframework.stereotype.Repository;
 import xyz.yescn.blog.domain.Category;
 import xyz.yescn.blog.dto.CategoryDto;
 import xyz.yescn.blog.dto.DailyDto;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * @author issuser
  */
+@Repository
 public interface CategoryMapper {
     /**
      * 通过ID，查询分类

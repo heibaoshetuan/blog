@@ -26,7 +26,7 @@ public class LoginController {
 
     @GetMapping("/index")
     public String index() {
-        return "index";
+        return "redirect:/daily/list";
     }
 
     @GetMapping("/login")
@@ -36,10 +36,11 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ModelAndView login(HttpServletRequest request, UserDto userDto) {
+    public ModelAndView login(HttpServletRequest request, UserDto userDto,Model model) {
         userDto = userService.getUserByNameAndPassword(userDto.getName(), userDto.getPassword());
         String skipUrl = (String) request.getSession().getAttribute("skipUrl");
-        if (null == userDto) {
+        if (null == userDto.getId()) {
+            model.addAttribute("error","用户或密码错误");
             return new ModelAndView("redirect:/login");
         }
         request.getSession().setAttribute("userDto", userDto);

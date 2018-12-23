@@ -104,11 +104,13 @@ public class IUserServiceImpl implements IUserService {
      */
     private UserDto getUserDtoFromUser(User user) {
         UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setName(user.getName());
-        userDto.setPhone(user.getPhone());
-        userDto.setCreateTime(user.getCreateTime());
-        userDto.setStatus(user.getStatus());
+        if(null != user){
+            userDto.setId(user.getId());
+            userDto.setName(user.getName());
+            userDto.setPhone(user.getPhone());
+            userDto.setCreateTime(user.getCreateTime());
+            userDto.setStatus(user.getStatus());
+        }
         return userDto;
     }
 }
