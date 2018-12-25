@@ -33,7 +33,7 @@ public class DailyController {
      * @param model
      * @return
      */
-    @GetMapping(value = "{id}")
+    @GetMapping("/view/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
         model.addAttribute("daily", dailyService.getDailyById(id));
         return "daily/view";
@@ -79,7 +79,7 @@ public class DailyController {
      * @param model
      * @return
      */
-    @GetMapping(value = "modify/{id}")
+    @GetMapping(value = "/modify/{id}")
     public String modify(@PathVariable("id") Long id, Model model) {
         model.addAttribute("daily", dailyService.getDailyById(id));
         model.addAttribute("categoryList", categoryService.getCategoryList());

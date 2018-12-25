@@ -114,18 +114,4 @@ public class UserController {
         userService.deleteUser(id);
         return new ModelAndView("redirect:/admin/users");
     }
-
-    /**
-     * create by: Gavin_Wang
-     *description:a
-     * create time: 11:28 2018/12/17 0017
-     *
-     * @eturn a
-     * @Param: null
-     */
-//    @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
-//    public List<UserDto> getUserList() {
-//        return userService.getUserList();
-//    }
-
 }

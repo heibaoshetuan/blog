@@ -17,14 +17,14 @@
 	<div class="blog-header">
 		<!--<h1 class="blog-title" >缘来是你</h1>-->
 		<p class="lead blog-description">记录人生每一次精彩瞬间~</p>
-        <div><a class="btn btn-default" href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>
+        <div ><a class="btn btn-default" th:if="${#httpServletRequest.session.getAttribute('userDto') != null}" href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>
 	</div>
 
 	<div class="row">
 
 		<div class="col-sm-8 blog-main">
 			<div class="blog-post" th:each="daily : ${dailyList}">
-                <a href="#" th:href="@{'/daily/'+${daily.getId()}}"><h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2></a>
+                <a href="#" th:href="@{'/daily/view/'+${daily.getId()}}"><h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2></a>
 				<p class="blog-post-meta" th:text="${daily.getCreateTime()}"></p>
 				<p th:utext="${daily.getContent()}"></p>
 			</div>

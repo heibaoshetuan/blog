@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       th:fragment="header">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -13,7 +13,8 @@
     <!-- Custom styles for this template -->
     <link href="../../css/blog.css" th:href="@{/css/blog.css}" rel="stylesheet">
     <link href="../../css/signin.css" th:href="@{/css/signin.css}" rel="stylesheet">
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css"
+          th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 
@@ -28,10 +29,85 @@
             <a class="blog-nav-item" href="#" th:href="@{/technology/list}">技术</a>
             <a class="blog-nav-item" href="#" th:href="@{/user}">About</a>
             <input type="text" class="blog-search" placeholder="搜索" required autofocus
-                   name="key" th:value="*{key}" />
+                   name="key" th:value="*{key}"/>
             <button class="blog-search-btn" type="submit">搜索</button>
-            <a class="blog-nav-manager" href="#" th:href="@{/user}"></a>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="nav-li-a" data-toggle="modal" data-target="#register" href="">
+                    <span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                <li><a class="nav-li-a" data-toggle="modal" data-target="#login" href="">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                    登录</a></li>
+            </ul>
+            <!-- 注册窗口 -->
+            <div id="register" class="modal fade" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-title">
+                            <h1 class="text-center">注册</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form id="registerForm" class="form-group" action="#" method="POST">
+                                <div class="form-group">
+                                    <label for="inputName">用户名</label>
+                                    <input class="form-control" id="inputName" type="text" placeholder="6-15位字母或数字" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword">密码</label>
+                                    <input class="form-control" id="inputPassword" type="password" placeholder="至少6位字母或数字" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">再次输入密码</label>
+                                    <input class="form-control" type="password"  placeholder="至少6位字母或数字">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone">手机</label>
+                                    <input class="form-control" id="inputPhone" type="text" name="phone"  placeholder="十一位数字" required autofocus>
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-primary" type="submit">提交</button>
+                                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 登录窗口 -->
+            <div id="login" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-title">
+                            <h1 class="text-center">登录</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form id="loginForm" class="form-group" action="#" method="POST">
+                                <label for="inputName" class="sr-only"> 用户</label>
+                                <input type="text" name="name" id="inputName" class="form-control" placeholder="名称" required autofocus >
+                                <label for="inputPassword" class="sr-only">密码</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="密码" required autofocus >                                    >
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="remember-me"> Remember me
+                                    </label>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
     </div>
-</div/body>
+</div>
+</body>
 </html>

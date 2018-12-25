@@ -18,7 +18,7 @@
             <form action="/daily" th:action="@{/daily}" method="POST" th:object="${daily}">
                 <input type="hidden" name="id" th:value="*{id}">
                 名称：<br>
-                <input type="text" class="form-control-textarea" name="title" th:value="*{title}">
+                <input type="text" for="inputEmail" class="form-control-textarea" name="title" th:value="*{title}">
                 分类：<br>
 
                 <select class="form-control-select select2" id="cgId" name="cgId">
@@ -28,7 +28,7 @@
                 </select>
                 内容：<br>
                 <!-- 加载编辑器的容器 -->
-                <script name="content" id="container"></script>
+                <textarea name="content" id="container" th:utext="*{content}"></textarea>
                 <input type="submit" class="btn-daily-submit" value="提交">
             </form>
         </div>
