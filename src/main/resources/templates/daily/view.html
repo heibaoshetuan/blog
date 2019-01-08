@@ -7,6 +7,7 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<title>忆生活</title>
 
 </head>
 
@@ -16,8 +17,7 @@
 <div class="container">
 
 	<div class="blog-header">
-		<!--<h1 class="blog-title" >缘来是你</h1>-->
-		<p class="lead blog-description">记录人生每一次精彩瞬间~</p>
+		<p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
 	</div>
 
 	<div class="row">
@@ -32,8 +32,8 @@
 
 			<nav>
 				<ul class="pager">
-					<li><a href="#" th:href="@{'/daily/view/'+${daily.getId()-1}}">Previous</a></li>
-					<li><a href="#" th:href="@{'/daily/view/'+${daily.getId()+1}}">Next</a></li>
+					<li><a href="#" th:href="@{'/daily/view/'+${daily.getId()-1}}">上一篇</a></li>
+					<li><a href="#" th:href="@{'/daily/view/'+${daily.getId()+1}}">下一篇</a></li>
 				</ul>
 			</nav>
 
@@ -74,6 +74,7 @@
 	</div><!-- /.row -->
 
 </div><!-- /.container -->
+<div th:replace="~{fragments/footer :: footer}"></div>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </body>

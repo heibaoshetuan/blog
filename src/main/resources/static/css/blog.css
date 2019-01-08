@@ -195,9 +195,10 @@ h6, .h6 {
 }
 
 .blog-search-btn {
-    /*padding: 0px 12px;*/
+    padding: 0px 300px;
     border: 1px solid transparent;
     border-radius: 4px;
+    color: #d9edf7;
 }
 
 .blog-edit {

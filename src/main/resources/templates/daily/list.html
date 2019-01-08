@@ -7,7 +7,7 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Gavin_Wang Blog</title>
+<title>忆生活</title>
 </head>
 
 <body>
@@ -15,13 +15,11 @@
 <div class="container">
 
 	<div class="blog-header">
-		<!--<h1 class="blog-title" >缘来是你</h1>-->
-		<p class="lead blog-description">记录人生每一次精彩瞬间~</p>
+		<p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
         <div ><a class="btn btn-default" th:if="${#httpServletRequest.session.getAttribute('userDto') != null}" href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>
 	</div>
 
 	<div class="row">
-
 		<div class="col-sm-8 blog-main">
 			<div class="blog-post" th:each="daily : ${dailyList}">
                 <a href="#" th:href="@{'/daily/view/'+${daily.getId()}}"><h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2></a>
@@ -30,8 +28,8 @@
 			</div>
 			<nav>
 				<ul class="pager">
-					<li><a href="#">Previous</a></li>
-					<li><a href="#">Next</a></li>
+					<!--<li><a href="#">Previous</a></li>-->
+					<!--<li><a href="#">Next</a></li>-->
 				</ul>
 			</nav>
 		</div>

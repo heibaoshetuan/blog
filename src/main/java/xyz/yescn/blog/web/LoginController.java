@@ -91,4 +91,13 @@ public class LoginController {
         }
         return new ModelAndView("redirect:" + skipUrl);
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        UserDto userDto = (UserDto) request.getSession().getAttribute("userDto");
+        if (userDto != null) {
+            request.getSession().removeAttribute("userDto");
+        }
+        return "redirect:/login";
+    }
 }
