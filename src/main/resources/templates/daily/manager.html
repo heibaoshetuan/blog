@@ -7,47 +7,48 @@
 <body>
 
 <!-- Page content -->
-<div class="container blog-content-container">
+<div class="container">
     <div class="blog-header">
         <p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
         <div><a class="btn btn-default" th:if="${#httpServletRequest.session.getAttribute('userDto') != null}"
                 href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>
     </div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <td>标题</td>
-            <td>创建时间</td>
-            <td colspan="2" align="center" th:if="${#httpServletRequest.session.getAttribute('userDto') != null}">操作
-            </td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${dailyList.getList().size()} eq 0">
-            <td colspan="4">缘来是你好懒丫，没有留下日志脚印~</td>
-        </tr>
-        <tr th:each="daily : ${dailyList.getList()}">
-            <td th:text="${daily.getTitle()}"></td>
-            <td><a th:text="${daily.getCreateTime()}"></a></td>
-            <td th:if="${#httpServletRequest.session.getAttribute('userDto') != null}"><a
-                    th:href="@{'/daily/modify/'+${daily.getId()}}" th:text="修改"></a></td>
-            <td th:if="${#httpServletRequest.session.getAttribute('userDto') != null}"><a
-                    th:href="@{'/daily/delete/'+${daily.getId()}}" th:text="删除"></a></td>
-        </tr>
-        <tr th:if="${dailyList.getList().size()} gt  0">
-            <td colspan="4">
+    <div class="row">
+        <div 
+            <div>
+                <ul>
+                    <li>标题</li>
+                    <li>创建时间</li>
+                    <li th:if="${#httpServletRequest.session.getAttribute('userDto') != null}">操作
+                    </li>
+                </ul>
+            </div>
+            <div>
                 <div>
+                    <p th:if="${dailyList.getList().size()} eq 0">
+                        缘来是你好懒丫，没有留下日志脚印~
+                    </p>
+                    <ul th:each="daily : ${dailyList.getList()}">
+                        <li th:text="${daily.getTitle()}"></li>
+                        <li><a th:text="${#dates.format(daily.getCreateTime(), 'yyyy-MM-dd HH:mm')}"></a></li>
+                        <li th:if="${#httpServletRequest.session.getAttribute('userDto') != null}"><a
+                                th:href="@{'/daily/modify/'+${daily.getId()}}" th:text="修改"></a></li>
+                        <li th:if="${#httpServletRequest.session.getAttribute('userDto') != null}"><a
+                                th:href="@{'/daily/delete/'+${daily.getId()}}" th:text="删除"></a></li>
+                    </ul>
+                </div>
+                <div th:if="${dailyList.getList().size()} gt  0">
                     <nav>
                         <ul class="pagination">
                             <li>
                                 <a th:if="${not dailyList.isIsFirstPage()}"
                                    th:href="@{${'/daily/manager'}(pageNum=${dailyList.pageNum-1},pageSize=${dailyList.pageSize})}"
                                    aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
+                                    <span aria-hidden="true">上一页</span>
                                 </a>
                                 <a th:if="${dailyList.isIsFirstPage()}" href="javascript:void(0);"
                                    aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
+                                    <span aria-hidden="true">上一页</span>
                                 </a>
                             </li>
                             <li th:each="pageNo : ${#numbers.sequence(1, dailyList.getPages())}">
@@ -63,19 +64,19 @@
                                 <a th:if="${not dailyList.isIsLastPage()}"
                                    th:href="@{${'/daily/manager'}(pageNum=${dailyList.pageNum+1},pageSize=${dailyList.pageSize})}"
                                    aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
+                                    <span aria-hidden="true">下一页</span>
                                 </a>
                                 <a th:if="${dailyList.isIsLastPage()}" href="javascript:void(0);" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
+                                    <span aria-hidden="true">下一页</span>
                                 </a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            </div>
+        </div>
+        <div th:replace="~{fragments/right :: right}"></div>
+    </div>
 
 </div><!-- /.container -->
 

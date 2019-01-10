@@ -38,21 +38,10 @@ public interface IDailyService {
     void deleteDaily(Long id);
 
     /**
-     * 通过用户ID，查询取日志列表，并分页形式展示
-     * @param pageNum
-     * @param pageSize
-     * @param urId
+     * 首页查询日志列表，默认获取10条记录
      * @return
      */
-    List<DailyDto> getDailyList(Integer pageNum,Integer pageSize,Long urId);
-
-    /**
-     * 通过用户ID，查询用户所发布日志总数量，进行分页处理
-     * @param urId
-     * @return
-     */
-    Long getDailyCount(Long urId);
-
+    List<DailyDto> getDailyList();
     /**
      * 通过用户ID，查询取日志列表，并分页形式展示
      * @param pageNum

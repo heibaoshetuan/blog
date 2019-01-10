@@ -26,7 +26,7 @@ public class Daily implements Serializable {
     /**
      * 日志创建时间
      */
-    private String createTime;
+    private Timestamp createTime;
     /**
      * 日志更新时间
      */
@@ -82,11 +82,11 @@ public class Daily implements Serializable {
         this.content = content;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

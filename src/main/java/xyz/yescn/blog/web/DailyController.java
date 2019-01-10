@@ -42,15 +42,13 @@ public class DailyController {
     }
 
     /**
-     *
-     * @param pageNum
-     * @param pageSize
+     *首页查询日志列表，默认获取按创建时间倒序排列10条记录
      * @param model
      * @return
      */
     @GetMapping("/list")
-    public String list(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize, Model model) {
-        model.addAttribute("dailyList", dailyService.getDailyPageList(pageNum, pageSize, null));
+    public String list(Model model) {
+        model.addAttribute("dailyList", dailyService.getDailyList());
         return "daily/list";
     }
 

@@ -13,7 +13,7 @@
         <id column="DR_ID" property="id"/>
         <result column="DR_TITLE" property="title"/>
         <result column="DR_CONTENT" property="content"/>
-        <result column="DR_CREATE_TIME" property="createTime"/>
+        <result column="DR_CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="DR_CG_ID" property="cgId"/>
         <result column="UR_ID" property="urId"/>
         <result column="DR_TAG" property="tag"/>
@@ -24,10 +24,6 @@
     </select>
     <select id="getDailyList" resultMap="dailyResultMap">
         select DR_ID,DR_TITLE,DR_CONTENT,DR_CREATE_TIME,DR_CG_ID,UR_ID,DR_TAG from blog_diary cg ORDER by cg.DR_CREATE_TIME DESC
-    </select>
-
-    <select id="findDailyCount" resultType="long" parameterType="long">
-        select cg(cg.DR_ID) from blog_diary cg where cg.UR_ID = #{urId}
     </select>
 
     <insert id="insertDaily" parameterType="xyz.yescn.blog.dto.DailyDto" useGeneratedKeys="true" keyProperty="id">

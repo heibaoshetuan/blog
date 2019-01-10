@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import xyz.yescn.blog.common.DateFormatUtil;
 import xyz.yescn.blog.dao.CategoryMapper;
 import xyz.yescn.blog.dao.DailyMapper;
 import xyz.yescn.blog.dao.PictureMapper;
@@ -14,6 +15,8 @@ import xyz.yescn.blog.domain.Daily;
 import xyz.yescn.blog.dto.DailyDto;
 import xyz.yescn.blog.service.IDailyService;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -62,33 +65,18 @@ public class IDailyServiceImpl implements IDailyService {
     }
 
     /**
-     * 通过用户ID，查询取日志列表，并分页形式展示     *
-     *
-     * @param pageNum
-     * @param pageSize
-     * @param urId
+     * 首页查询日志列表，默认获取按创建时间倒序排列10条记录
      * @return
      */
     @Override
-    public List<DailyDto> getDailyList(Integer pageNum, Integer pageSize, Long urId) {
+    public List<DailyDto> getDailyList() {
         List<DailyDto> dailyDtoList = new ArrayList<>();
-        PageHelper.startPage(pageNum, pageSize);
+        PageHelper.startPage(1, 10);
         List<Daily> dailyList = dailyMapper.getDailyList();
         for (Daily daily : dailyList) {
             dailyDtoList.add(getDailyDtoFromDaily(daily, false));
         }
         return dailyDtoList;
-    }
-
-    /**
-     * 通过用户ID，查询用户所发布日志总数量，进行分页处理
-     *
-     * @param urId
-     * @return
-     */
-    @Override
-    public Long getDailyCount(Long urId) {
-        return dailyMapper.findDailyCount(urId);
     }
 
     /**
@@ -123,7 +111,7 @@ public class IDailyServiceImpl implements IDailyService {
             } else {
                 dailyDto.setContent(getFilerDailyContent(daily.getContent()));
             }
-            dailyDto.setCreateTime(daily.getCreateTime());
+            dailyDto.setCreateTime(DateFormatUtil.simpleDateFormat(daily.getCreateTime()));
             dailyDto.setCategory(categoryMapper.getCategoryById(daily.getCgId()));
         }
         return dailyDto;
