@@ -2,33 +2,77 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="~{fragments/header :: header}">
-    <title>忆生活</title>
+    <!-- 配置文件 -->
+
 </head>
 <body>
 <!-- Page content -->
+<script src="../../ueditor/ueditor.config.js" th:src="@{/ueditor/ueditor.config.js}"></script>
+<!-- 编辑器源码文件 -->
+<script src="../../ueditor/ueditor.all.min.js" th:src="@{/ueditor/ueditor.all.min.js}"></script>
+<script src="../../ueditor/lang/zh-cn/zh-cn.js" th:src="@{/ueditor/lang/zh-cn/zh-cn.js}"></script>
+
+
+<script type="text/javascript">
+    //实例化编辑器
+    var ue = UE.getEditor('container');
+    //对编辑器的操作最好在编辑器ready之后再做
+    ue.ready(function () {
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        }
+    );
+    //验证表单，标题，分类，内容是否为空
+    function checkParams() {
+        var title = $("#title").val();
+        if (title == "" || title == null || title == undefined) {
+            alert("标题为空，请重新填写");
+            return false;
+        }
+        var category = $("#cgId").val();
+        if (category == "" || category == null || category == undefined || category == "请选择") {
+            alert("分类为空，请重新选择");
+            return false;
+        }
+        var contentTxt = ue.getContentTxt();
+        if (contentTxt == "" || contentTxt == null || contentTxt == undefined) {
+            alert("内容为空，请重新填写");
+            return false;
+        }
+    }
+
+
+
+</script>
 <div class="container">
     <div class="blog-header">
+        <!--<h1 class="blog-title" >缘来是你</h1>-->
         <p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
-        <div><a class="btn btn-default" href="/daily/form" th:href="@{/daily/form}">修改日志</a></div>
+        <!--<div><a class="btn btn-default" href="/daily/form" th:href="@{/daily/form}">修改日志</a></div>-->
     </div>
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-            <form action="/daily" th:action="@{/daily}" method="POST" th:object="${daily}">
+            <form action="/daily" th:action="@{/daily}" method="POST" th:object="${daily}" onsubmit="return checkParams()">
                 <input type="hidden" name="id" th:value="*{id}">
-                名称：<br>
-                <input type="text" for="inputEmail" class="form-control-textarea" name="title" th:value="*{title}">
+                标题：<br>
+                <input type="text" for="inputEmail" class="form-control-textarea" id="title" name="title"
+                       th:value="*{title}">
+                <br>
                 分类：<br>
-
                 <select class="form-control-select select2" id="cgId" name="cgId">
                     <option>请选择</option>
                     <option th:selected="${daily.cgId eq category.id}" th:each="category:${categoryList}"
                             th:value="${category.id}" th:text="${category.name}"/>
                 </select>
+                <br>
                 内容：<br>
                 <!-- 加载编辑器的容器 -->
                 <textarea name="content" id="container" th:utext="*{content}"></textarea>
-                <input type="submit" class="btn-daily-submit" value="提交">
+                <br>
+                <input type="submit" class="btn-daily-submit" onclick="checkParams()" value="提交">
             </form>
         </div>
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
@@ -65,14 +109,6 @@
         </div><!-- /.blog-sidebar -->
     </div>
 </div><!-- /.container -->
-<!-- 配置文件 -->
-<script src="../../ueditor/ueditor.config.js" th:src="@{/ueditor/ueditor.config.js}"></script>
-<!-- 编辑器源码文件 -->
-<script src="../../ueditor/ueditor.all.min.js" th:src="@{/ueditor/ueditor.all.min.js}"></script>
-<script type="text/javascript">
-    //实例化编辑器
-    var ue = UE.getEditor('container');
-</script>
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>

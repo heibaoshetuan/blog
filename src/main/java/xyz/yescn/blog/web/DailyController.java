@@ -1,11 +1,13 @@
 package xyz.yescn.blog.web;
 
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import xyz.yescn.blog.domain.Category;
+import xyz.yescn.blog.domain.Daily;
 import xyz.yescn.blog.dto.DailyDto;
 import xyz.yescn.blog.dto.UserDto;
 import xyz.yescn.blog.service.ICategoryService;
@@ -40,15 +42,28 @@ public class DailyController {
     }
 
     /**
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param model
+     * @return
+     */
+    @GetMapping("/list")
+    public String list(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize, Model model) {
+        model.addAttribute("dailyList", dailyService.getDailyPageList(pageNum, pageSize, null));
+        return "daily/list";
+    }
+
+    /**
      * 获取日志列表，并以分页形式展示
      *
      * @param model
      * @return
      */
-    @GetMapping("/list")
-    public String list(Model model) {
-        model.addAttribute("dailyList", dailyService.getDailyList(1, 10));
-        return "daily/list";
+    @GetMapping("/manager")
+    public String manager(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "4") Integer pageSize, Model model) {
+        model.addAttribute("dailyList", dailyService.getDailyPageList(pageNum, pageSize, null));
+        return "daily/manager";
     }
 
     @GetMapping("/form")

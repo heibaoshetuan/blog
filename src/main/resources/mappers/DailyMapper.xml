@@ -23,7 +23,11 @@
         select DR_ID,DR_TITLE,DR_CONTENT,DR_CREATE_TIME,DR_CG_ID,UR_ID,DR_TAG from blog_diary cg where cg.DR_ID = #{id}
     </select>
     <select id="getDailyList" resultMap="dailyResultMap">
-        select DR_ID,DR_TITLE,DR_CONTENT,DR_CREATE_TIME,DR_CG_ID,UR_ID,DR_TAG from blog_diary cg ORDER by cg.DR_CREATE_TIME DESC 
+        select DR_ID,DR_TITLE,DR_CONTENT,DR_CREATE_TIME,DR_CG_ID,UR_ID,DR_TAG from blog_diary cg ORDER by cg.DR_CREATE_TIME DESC
+    </select>
+
+    <select id="findDailyCount" resultType="long" parameterType="long">
+        select cg(cg.DR_ID) from blog_diary cg where cg.UR_ID = #{urId}
     </select>
 
     <insert id="insertDaily" parameterType="xyz.yescn.blog.dto.DailyDto" useGeneratedKeys="true" keyProperty="id">
