@@ -10,8 +10,8 @@ spring:
 #      protocol_header: x-forwarded-proto
   datasource:
     druid:
-      username: root
-      password: wmfZB*2513148
+      username: gavin
+      password: 123456
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false
       max-active: 100
