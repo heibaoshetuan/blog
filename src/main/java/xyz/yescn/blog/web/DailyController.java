@@ -59,7 +59,7 @@ public class DailyController {
      * @return
      */
     @GetMapping("/manager")
-    public String manager(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "4") Integer pageSize, Model model) {
+    public String manager(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "20") Integer pageSize, Model model) {
         model.addAttribute("dailyList", dailyService.getDailyPageList(pageNum, pageSize, null));
         return "daily/manager";
     }
