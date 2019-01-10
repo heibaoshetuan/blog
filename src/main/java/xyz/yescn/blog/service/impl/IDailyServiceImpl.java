@@ -1,6 +1,7 @@
 package xyz.yescn.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +40,7 @@ public class IDailyServiceImpl implements IDailyService {
      */
     @Override
     public DailyDto getDailyById(Long id) {
-        return getDailyDtoFromDaily(dailyMapper.getDailyById(id),true);
+        return getDailyDtoFromDaily(dailyMapper.getDailyById(id), true);
     }
 
     @Override
@@ -60,15 +61,49 @@ public class IDailyServiceImpl implements IDailyService {
         dailyMapper.deleteDaily(id);
     }
 
+    /**
+     * 通过用户ID，查询取日志列表，并分页形式展示     *
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param urId
+     * @return
+     */
     @Override
-    public List<DailyDto> getDailyList(Integer pageNum, Integer pageSize) {
+    public List<DailyDto> getDailyList(Integer pageNum, Integer pageSize, Long urId) {
         List<DailyDto> dailyDtoList = new ArrayList<>();
         PageHelper.startPage(pageNum, pageSize);
         List<Daily> dailyList = dailyMapper.getDailyList();
         for (Daily daily : dailyList) {
-            dailyDtoList.add(getDailyDtoFromDaily(daily,false));
+            dailyDtoList.add(getDailyDtoFromDaily(daily, false));
         }
         return dailyDtoList;
+    }
+
+    /**
+     * 通过用户ID，查询用户所发布日志总数量，进行分页处理
+     *
+     * @param urId
+     * @return
+     */
+    @Override
+    public Long getDailyCount(Long urId) {
+        return dailyMapper.findDailyCount(urId);
+    }
+
+    /**
+     * 通过用户ID，查询取日志列表，并分页形式展示
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param urId
+     * @return
+     */
+    @Override
+    public PageInfo<Daily> getDailyPageList(Integer pageNum, Integer pageSize, Long urId) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Daily> dailyList = dailyMapper.getDailyList();
+        return new PageInfo<>(dailyList,pageSize);
     }
 
     /**
@@ -77,15 +112,15 @@ public class IDailyServiceImpl implements IDailyService {
      * @param daily
      * @return
      */
-    private DailyDto getDailyDtoFromDaily(Daily daily,boolean flag) {
+    private DailyDto getDailyDtoFromDaily(Daily daily, boolean flag) {
         DailyDto dailyDto = new DailyDto();
         if (daily != null) {
             dailyDto.setId(daily.getId());
             dailyDto.setTitle(daily.getTitle());
             dailyDto.setCgId(daily.getCgId());
-            if(flag){
+            if (flag) {
                 dailyDto.setContent(daily.getContent());
-            }else{
+            } else {
                 dailyDto.setContent(getFilerDailyContent(daily.getContent()));
             }
             dailyDto.setCreateTime(daily.getCreateTime());
@@ -139,7 +174,7 @@ public class IDailyServiceImpl implements IDailyService {
             // 替换&amp;nbsp;
             textStr = textStr.replaceAll("&amp;", "").replaceAll("nbsp;", "");
             if (textStr.length() > 200) {
-                textStr = textStr.substring(0,200);
+                textStr = textStr.substring(0, 200);
             }
         } catch (Exception e) {
             System.err.println("Html2Text: " + e.getMessage());

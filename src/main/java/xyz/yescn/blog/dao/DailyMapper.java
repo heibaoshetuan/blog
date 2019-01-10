@@ -16,4 +16,5 @@ public interface DailyMapper {
     void updateDaily(DailyDto dailyDto);
     void deleteDaily(Long id);
     List<Daily> getDailyList();
+    Long findDailyCount(Long urId);
 }

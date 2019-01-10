@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head　th:replace="~{fragments/header :: header}">
+<head
+　th:replace="~{fragments/header :: header}">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,58 +15,89 @@
 
 <div class="container">
 
-	<div class="blog-header">
-		<p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
-        <div ><a class="btn btn-default" th:if="${#httpServletRequest.session.getAttribute('userDto') != null}" href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>
-	</div>
+    <div class="blog-header">
+        <p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
+        <div><a class="btn btn-default" th:if="${#httpServletRequest.session.getAttribute('userDto') != null}"
+                href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>
+    </div>
 
-	<div class="row">
-		<div class="col-sm-8 blog-main">
-			<div class="blog-post" th:each="daily : ${dailyList}">
-                <a href="#" th:href="@{'/daily/view/'+${daily.getId()}}"><h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2></a>
-				<p class="blog-post-meta" th:text="${daily.getCreateTime()}"></p>
-				<p th:utext="${daily.getContent()}"></p>
-			</div>
-			<nav>
-				<ul class="pager">
-					<!--<li><a href="#">Previous</a></li>-->
-					<!--<li><a href="#">Next</a></li>-->
-				</ul>
-			</nav>
-		</div>
-		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-			<div class="sidebar-module sidebar-module-inset">
-				<h4>About</h4>
-				<p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-			</div>
-			<div class="sidebar-module">
-				<h4>Archives</h4>
-				<ol class="list-unstyled">
-					<li><a href="#">March 2014</a></li>
-					<li><a href="#">February 2014</a></li>
-					<li><a href="#">January 2014</a></li>
-					<li><a href="#">December 2013</a></li>
-					<li><a href="#">November 2013</a></li>
-					<li><a href="#">October 2013</a></li>
-					<li><a href="#">September 2013</a></li>
-					<li><a href="#">August 2013</a></li>
-					<li><a href="#">July 2013</a></li>
-					<li><a href="#">June 2013</a></li>
-					<li><a href="#">May 2013</a></li>
-					<li><a href="#">April 2013</a></li>
-				</ol>
-			</div>
-			<div class="sidebar-module">
-				<h4>Elsewhere</h4>
-				<ol class="list-unstyled">
-					<li><a href="#">GitHub</a></li>
-					<li><a href="#">Twitter</a></li>
-					<li><a href="#">Facebook</a></li>
-				</ol>
-			</div>
-		</div><!-- /.blog-sidebar -->
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            <div class="blog-post" th:each="daily : ${dailyList.getList()}">
+                <a href="#" th:href="@{'/daily/view/'+${daily.getId()}}"><h2 class="blog-post-title"
+                                                                             th:text="${daily.getTitle()}"></h2></a>
+                <p class="blog-post-meta" th:text="${daily.getCreateTime()}"></p>
+                <p th:utext="${daily.getContent()}"></p>
+            </div>
 
-	</div><!-- /.row -->
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a th:if="${not dailyList.isIsFirstPage()}"
+                           th:href="@{${'/daily/list'}(pageNum=${dailyList.pageNum-1},pageSize=${dailyList.pageSize})}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        <a th:if="${dailyList.isIsFirstPage()}" href="javascript:void(0);" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:each="pageNo : ${#numbers.sequence(1, dailyList.getPages())}">
+                        <a th:if="${dailyList.pageNum eq pageNo}" href="javascript:void(0);">
+                            <span th:text="${pageNo}"></span>
+                        </a>
+                        <a th:if="${not (dailyList.pageNum eq pageNo)}"
+                           th:href="@{${'/daily/list'}(pageNum=${pageNo},pageSize=${dailyList.pageSize})}">
+                            <span th:text="${pageNo}"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:if="${not dailyList.isIsLastPage()}"
+                           th:href="@{${'/daily/list'}(pageNum=${dailyList.pageNum+1},pageSize=${dailyList.pageSize})}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        <a th:if="${dailyList.isIsLastPage()}" href="javascript:void(0);" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>About</h4>
+                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
+                    fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            </div>
+            <div class="sidebar-module">
+                <h4>Archives</h4>
+                <ol class="list-unstyled">
+                    <li><a href="#">March 2014</a></li>
+                    <li><a href="#">February 2014</a></li>
+                    <li><a href="#">January 2014</a></li>
+                    <li><a href="#">December 2013</a></li>
+                    <li><a href="#">November 2013</a></li>
+                    <li><a href="#">October 2013</a></li>
+                    <li><a href="#">September 2013</a></li>
+                    <li><a href="#">August 2013</a></li>
+                    <li><a href="#">July 2013</a></li>
+                    <li><a href="#">June 2013</a></li>
+                    <li><a href="#">May 2013</a></li>
+                    <li><a href="#">April 2013</a></li>
+                </ol>
+            </div>
+            <div class="sidebar-module">
+                <h4>Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ol>
+            </div>
+        </div><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
 
 </div><!-- /.container -->
 <div th:replace="~{fragments/footer :: footer}"></div>

@@ -1,6 +1,9 @@
 package xyz.yescn.blog.service;
 
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+import xyz.yescn.blog.domain.Daily;
 import xyz.yescn.blog.dto.DailyDto;
 
 import java.util.List;
@@ -35,10 +38,27 @@ public interface IDailyService {
     void deleteDaily(Long id);
 
     /**
-     * 获取日志列表，并分页形式展示
+     * 通过用户ID，查询取日志列表，并分页形式展示
      * @param pageNum
      * @param pageSize
+     * @param urId
      * @return
      */
-    List<DailyDto> getDailyList(Integer pageNum,Integer pageSize);
+    List<DailyDto> getDailyList(Integer pageNum,Integer pageSize,Long urId);
+
+    /**
+     * 通过用户ID，查询用户所发布日志总数量，进行分页处理
+     * @param urId
+     * @return
+     */
+    Long getDailyCount(Long urId);
+
+    /**
+     * 通过用户ID，查询取日志列表，并分页形式展示
+     * @param pageNum
+     * @param pageSize
+     * @param urId
+     * @return
+     */
+    PageInfo<Daily> getDailyPageList(Integer pageNum, Integer pageSize, Long urId);
 }
