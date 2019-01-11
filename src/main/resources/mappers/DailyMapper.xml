@@ -36,6 +36,6 @@
     </update>
 
     <delete id="deleteDaily" parameterType="long">
-        delete from blog_diary cg where cg.DR_ID = #{id}
+        delete from blog_diary where DR_ID = #{id}
     </delete>
 </mapper>

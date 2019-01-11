@@ -27,7 +27,7 @@
 			<div class="blog-post">
 				<div><h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2><a class="blog-edit" th:unless="${#httpServletRequest.session.getAttribute('userDto') == null}" th:href="@{'/daily/modify/'+${daily.getId()}}">修改</a></div>
 				<p class="blog-post-meta" th:text="${daily.getCreateTime()}"></p>
-				<p th:utext="${daily.getContent()}"></p>
+				<p style="text-indent: 2em;" th:utext="${daily.getContent()}"></p>
 			</div><!-- /.blog-post -->
 
 			<nav>

@@ -109,6 +109,6 @@ public class DailyController {
     @GetMapping(value = "delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         dailyService.deleteDaily(id);
-        return "redirect:/daily/list";
+        return "redirect:/daily/manager";
     }
 }

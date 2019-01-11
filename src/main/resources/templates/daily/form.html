@@ -72,7 +72,7 @@
                 <!-- 加载编辑器的容器 -->
                 <textarea name="content" id="container" th:utext="*{content}"></textarea>
                 <br>
-                <input type="submit" class="btn-daily-submit" onclick="checkParams()" value="提交">
+                <input type="submit" class="btn-daily-submit" style="margin-top: -30px;" onclick="checkParams()" value="提交">
             </form>
         </div>
         <div th:replace="~{fragments/right :: right}"></div>

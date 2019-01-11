@@ -162,7 +162,7 @@ public class IDailyServiceImpl implements IDailyService {
             // 替换&amp;nbsp;
             textStr = textStr.replaceAll("&amp;", "").replaceAll("nbsp;", "");
             if (textStr.length() > 200) {
-                textStr = textStr.substring(0, 200);
+                textStr = textStr.substring(0, 200).replaceAll("&","");
             }
         } catch (Exception e) {
             System.err.println("Html2Text: " + e.getMessage());
