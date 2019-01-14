@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head
-        　th:replace="~{fragments/header :: header}">
+<head th:replace="~{fragments/header :: header}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <title>忆生活</title>
@@ -16,18 +14,25 @@
 <div class="container">
 
     <div class="blog-header">
-        <p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
-        <!--<div><a class="btn btn-default" th:if="${#httpServletRequest.session.getAttribute('userDto') != null}"-->
-                <!--href="/daily/form" th:href="@{/daily/form}">创建日志</a></div>-->
+        <p class="lead blog-description">给自己一个机会，回归这一片宁静~</p>
     </div>
 
     <div class="row">
         <div class="col-sm-8 blog-main">
             <div class="blog-post" th:each="daily : ${dailyList}">
-                <a href="#" th:href="@{'/daily/view/'+${daily.getId()}}">
-                    <h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2></a>
-                <p class="blog-post-meta" th:text="${daily.getCreateTime()}"></p>
-                <p th:utext="${daily.getContent()}"></p>
+                <h2 class="blog-post-title" th:text="${daily.getTitle()}"></h2>
+                <p class="blog-post-meta">
+                    <span>时间:</span>
+                    <span th:text="${daily.getCreateTime()}"></span>
+                    <span style="padding-left: 15px;">归类:<a style="text-decoration:none;" href="#"
+                                                            th:text="${daily.getCategory().getName()}"></a></span>
+                </p>
+                <p style="font-size: 15px;text-align: left;text-indent: 2em;padding-bottom: 10px;">
+                    <span th:utext="${daily.getContent()}"></span>
+                    <span>...<a style="text-decoration:none;"
+                                th:href="@{'/daily/view/'+${daily.getId()}}">【阅读更多】</a></span>
+
+                </p>
             </div>
         </div>
         <div th:replace="~{fragments/right :: right}"></div>

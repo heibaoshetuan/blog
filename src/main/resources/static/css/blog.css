@@ -13,7 +13,7 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-    margin-top: 25px;
+    /*margin-top: 25px;*/
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
     color: #333;
@@ -95,6 +95,8 @@ h6, .h6 {
 .blog-description {
     font-size: 20px;
     color: #999;
+    background-size: cover;
+    background-image: url("images/logo.jpg");
 }
 
 
@@ -159,7 +161,9 @@ h6, .h6 {
 
 .blog-post-meta {
     margin-bottom: 20px;
+    margin-top: 20px;
     color: #999;
+    font-size: 15px;
 }
 
 
@@ -200,16 +204,12 @@ h6, .h6 {
     border-radius: 4px;
     color: #d9edf7;
 }
-
-.blog-edit {
-    margin-left: 570px;
-}
-
 .form-control-select {
+    margin-bottom: 7px;
     display: block;
     width: auto;
     height: 34px;
-    padding: 6px 60px;
+    padding: 2px 10px;
     font-size: 14px;
     line-height: 1.42857143;
     color: #555;
@@ -218,10 +218,11 @@ h6, .h6 {
 }
 
 .form-control-textarea {
+    margin-bottom: 7px;
     display: block;
     width: 500px;
     height: 34px;
-    padding: 6px 12px;
+    padding: 2px 10px;
     font-size: 14px;
     line-height: 1.42857143;
     color: #555;

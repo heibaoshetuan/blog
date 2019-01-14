@@ -49,7 +49,7 @@
 <div class="container">
     <div class="blog-header">
         <!--<h1 class="blog-title" >缘来是你</h1>-->
-        <p class="lead blog-description">给自己一个机会，回归那一片宁静~</p>
+        <p class="lead blog-description">给自己一个机会，回归这一片宁静~</p>
         <!--<div><a class="btn btn-default" href="/daily/form" th:href="@{/daily/form}">修改日志</a></div>-->
     </div>
 
@@ -60,14 +60,12 @@
                 标题：<br>
                 <input type="text" for="inputEmail" class="form-control-textarea" id="title" name="title"
                        th:value="*{title}">
-                <br>
                 分类：<br>
-                <select class="form-control-select select2" id="cgId" name="cgId">
+                <select class="form-control-select" id="cgId" name="cgId">
                     <option>请选择</option>
                     <option th:selected="${daily.cgId eq category.id}" th:each="category:${categoryList}"
                             th:value="${category.id}" th:text="${category.name}"/>
                 </select>
-                <br>
                 内容：<br>
                 <!-- 加载编辑器的容器 -->
                 <textarea name="content" id="container" th:utext="*{content}"></textarea>

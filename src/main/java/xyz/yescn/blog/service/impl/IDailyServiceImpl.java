@@ -160,9 +160,9 @@ public class IDailyServiceImpl implements IDailyService {
             htmlStr = m_html1.replaceAll("");
             textStr = htmlStr;
             // 替换&amp;nbsp;
-            textStr = textStr.replaceAll("&amp;", "").replaceAll("nbsp;", "");
-            if (textStr.length() > 200) {
-                textStr = textStr.substring(0, 200).replaceAll("&","");
+            textStr = textStr.replaceAll("&amp;", "").replaceAll("nbsp;", "").replaceAll("&","");
+            if (textStr.length() > 180) {
+                textStr = textStr.substring(0, 180);
             }
         } catch (Exception e) {
             System.err.println("Html2Text: " + e.getMessage());
