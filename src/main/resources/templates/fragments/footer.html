@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 </head>
 <body>
 <footer class="blog-footer bg-inverse" th:fragment="footer">
-    <p>Copyright © 2019 <a href="http://www.yescn.xyz">忆生活</a> <a href="http://www.miitbeian.gov.cn">粤ICP备19002549号</a>  <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001"></a></p>
-    <p>
-        <a href="#">返回顶部</a>
-    </p>
-    <script src="../../assets/js/ie8-responsive-file-warning.js" th:src="@{/assets/js/ie8-responsive-file-warning.js}"></script>
-    <script src="../../assets/js/ie-emulation-modes-warning.js" th:src="@{/assets/js/ie-emulation-modes-warning.js}"></script>
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js" th:src="@{/assets/js/ie10-viewport-bug-workaround.js}"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div style="width:300px;margin:0 auto;">
+       Copyright © 2019
+        <a style="display:inline-block;text-decoration:none;height:30px;line-height:20px;color:#939393;" href="http://www.yescn.xyz">&nbsp;忆生活</a>
+        <a style="display:inline-block;text-decoration:none;height:30px;line-height:20px;color:#939393;" target="_blank" href="http://www.miitbeian.gov.cn">&nbsp;粤ICP备19002549号</a>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44140302000192" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img th:src="@{/images/gonganbeian.png}" style="float:left;"/>
+            <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">粤公网安备 44140302000192号</p>
+        </a>
+
+            <a href="#" style="text-decoration: none;"><p style="padding: 5px;">返回顶部</p></a>
+
+    </div>
+
+    <script  th:src="@{/assets/js/ie8-responsive-file-warning.js}"></script>
+    <script  th:src="@{/assets/js/ie-emulation-modes-warning.js}"></script>
+    <script  th:src="@{/assets/js/ie10-viewport-bug-workaround.js}"></script>
 
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script>-->
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"　th:src="@{/assets/js/vendor/jquery.min.js}"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js" th:src="@{/dist/js/bootstrap.min.js}"></script>
-  </footer>
+    <script  th:src="@{/dist/js/bootstrap.min.js}"></script>
+</footer>
 </body>
 </html>
